@@ -16,5 +16,11 @@
     "categoria": "Habitação",
     "limite": 350.0,
     "periodo": "anual"
+  },
+  {
+    "id": 4,
+    "categoria": "Alimentação",
+    "limite": 200.0,
+    "periodo": "mensal"
   }
 ]

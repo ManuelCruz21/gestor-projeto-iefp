@@ -116,3 +116,37 @@ python -m gestor.cli list-mov --descricao "Viagem de comboio"
 
 # Exemplo para listar orçamentos
 python -m gestor.cli list-orc
+
+
+Entrega 3 — Relatórios (13/08/2025)
+- Implementar reports.py com:
+
+  - totais-por-cat
+
+  - cashflow-semanal
+
+  - top-categorias
+
+  - alertas
+
+- Adicionar exportação CSV/JSON.
+
+- Critério de aceitação: gerar pelo menos 2 relatórios e ficheiros de saída.
+
+- Entrega: código + exemplos em relatorios/.
+
+# Exemplo de Relatório por categoria
+python -m gestor.cli relatorio --categoria totais-por-cat
+
+# Exemplo de Relatório por cashflow-semanal
+python -m gestor.cli relatorio --categoria cashflow-semanal
+
+# Exemplo de Relatório top-categorias
+python -m gestor.cli relatorio --categoria top-categorias
+Salário - 25.00€
+Alimentação - 5.00€
+Trasnporte - 2.10€
+
+# Exemplo de Relatório de alertas
+python -m gestor.cli relatorio --categoria alertas
+Alimentação | Limite: 200.00€ | Gasto: 55.00€ | Excesso: 0.00€

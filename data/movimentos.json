@@ -43,5 +43,32 @@
     "tipo": "despesa",
     "descricao": "Almoço no restaurante",
     "método de pagamento": "dinheiro"
+  },
+  {
+    "id": 6,
+    "data": "2025-08-13T15:56:00",
+    "valor": 5.0,
+    "categoria": "Alimentação",
+    "tipo": "despesa",
+    "descricao": "Lanche",
+    "método de pagamento": "dinheiro"
+  },
+  {
+    "id": 7,
+    "data": "2025-08-13T15:56:00",
+    "valor": 2.1,
+    "categoria": "Trasnporte",
+    "tipo": "despesa",
+    "descricao": "Autocarro",
+    "método de pagamento": "dinheiro"
+  },
+  {
+    "id": 8,
+    "data": "2025-08-13T15:56:00",
+    "valor": 25.0,
+    "categoria": "Salário",
+    "tipo": "receita",
+    "descricao": "Prémio diário",
+    "método de pagamento": "cartão"
   }
 ]

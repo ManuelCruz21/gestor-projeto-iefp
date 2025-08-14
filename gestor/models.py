@@ -4,7 +4,7 @@
 #Para se utilizar a Enumeração
 from enum import Enum
 #Para se poder colocar no formato ISO (YYYY-MM-DD)
-from datetime import datetime
+from datetime import datetime,timedelta
 
 METODOS_VALIDOS = ["dinheiro", "cartão", "transferência"]
 PERIODO = ["semanal", "mensal", "anual"]
@@ -98,3 +98,15 @@ class Orcamento:
             periodo= d.get("periodo", "mensal")
     )
     
+
+def calcular_semana(data_str):
+    """
+    Recebe uma string de data no formato ISO (YYYY-MM-DD ou YYYY-MM-DDTHH:MM:SS)
+    e retorna o início e fim da semana (segunda a domingo) dessa data.
+    """
+    data = datetime.fromisoformat(data_str)
+    # segunda-feira da semana
+    inicio_semana = data - timedelta(days=data.weekday())
+    # domingo da semana
+    fim_semana = inicio_semana + timedelta(days=6)
+    return inicio_semana.date(), fim_semana.date()

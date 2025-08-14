@@ -28,21 +28,13 @@ def cmd_add_movimento(args):
 
 def cmd_listar(args):
     s = build_service()
-    movimentos = s.listar_movimento()
-
-    if args.categoria:
-        movimentos = [m for m in movimentos if m.categoria == args.categoria]
-
-    if args.tipo:
-        movimentos = [m for m in movimentos if m.tipo == args.tipo]
-
-    if args.data:
-        filtro_data = datetime.fromisoformat(args.data)
-        movimentos = [m for m in movimentos if m.data == filtro_data]
-
-    if args.descricao:
-        filtro_descricao = args.descricao.lower()
-        movimentos = [m for m in movimentos if filtro_descricao in m.descricao.lower()]
+    filtros = {
+        "categoria": args.categoria,
+        "tipo": args.tipo,
+        "data": args.data,
+        "descricao": args.descricao
+    }
+    movimentos = s.listar_movimento(filtros)
 
     for m in movimentos:
         print(f'##{m.id}: {m.data}, {m.tipo}, {m.categoria} - {m.descricao} : {m.valor}€, {m.metodo_de_pagamento}')
@@ -59,9 +51,31 @@ def cmd_add_orcamento(args):
 
 def cmd_list_orcamentos(args):
     s = build_service()
-    for o in s.listar_orcamento(args.periodo):
+    filtros={
+        "periodo": args.periodo,
+    }
+    orcamentos = s.listar_orcamento(filtros)
+
+    for o in orcamentos:
         print(f"#{o.id}: {o.categoria} - {o.limite}€ ({o.periodo})")
 
+def cmd_relatorio(args):
+    s=build_service()
+    if args.categoria == "totais-por-cat":
+        for categoria,total in s.relatorio_valores_totais_mov_por_categoria():
+            print(f'{categoria}: {total}€')
+    elif args.categoria == "cashflow-semanal":
+        for inicio, fim, receita, despesa, saldo in s.relatorio_cashflow_semanal():
+            print(f"{inicio} a {fim} | Receita: {receita:.2f}€ | Despesa: {despesa:.2f}€ | Saldo: {saldo:.2f}€")
+
+    elif args.categoria == "top-categorias":
+        for categoria, total in s.relatorio_top_categorias():
+            print(f"{categoria} - {total:.2f}€")
+    elif args.categoria == "alertas":
+        for categoria, limite, gasto, excesso in s.relatorio_alertas():
+            print(f"{categoria} | Limite: {limite:.2f}€ | Gasto: {gasto:.2f}€ | Excesso: {excesso:.2f}€")
+    else:
+        print("Tipo de relatório inválido")
 
 def main(argv=None):
     parser = argparse.ArgumentParser(prog="gestor", description= "Gestor de Despesas e Orçamentos (Entrega 2)")
@@ -96,6 +110,11 @@ def main(argv=None):
     p_list_orc = sub.add_parser("list-orc", help="Listar orçamentos")
     p_list_orc.add_argument("--periodo", choices=["mensal", "anual", "semanal"])
     p_list_orc.set_defaults(func=cmd_list_orcamentos)
+
+    #funcao para chamar relatorios
+    p_rel = sub.add_parser("relatorio", help="Gerar relatórios")
+    p_rel.add_argument("--categoria", required=True, choices=["totais-por-cat","cashflow-semanal","top-categorias","alertas"])
+    p_rel.set_defaults(func=cmd_relatorio)
 
     args = parser.parse_args(argv)
     args.func(args)
