@@ -5,6 +5,7 @@
 import os, argparse
 from .storage import Storage
 from .service import GestorService
+from datetime import datetime
 
 BASE_DATA = os.path.join(os.path.dirname(os.path.dirname(__file__)),"data")
 
@@ -26,12 +27,45 @@ def cmd_add_movimento(args):
 
 
 def cmd_listar(args):
-    s=build_service()
-    for m in s.listar_movimento():
+    s = build_service()
+    movimentos = s.listar_movimento()
+
+    if args.categoria:
+        movimentos = [m for m in movimentos if m.categoria == args.categoria]
+
+    if args.tipo:
+        movimentos = [m for m in movimentos if m.tipo == args.tipo]
+
+    if args.data:
+        filtro_data = datetime.fromisoformat(args.data)
+        movimentos = [m for m in movimentos if m.data == filtro_data]
+
+    if args.descricao:
+        filtro_descricao = args.descricao.lower()
+        movimentos = [m for m in movimentos if filtro_descricao in m.descricao.lower()]
+
+    for m in movimentos:
         print(f'##{m.id}: {m.data}, {m.tipo}, {m.categoria} - {m.descricao} : {m.valor}€, {m.metodo_de_pagamento}')
 
+
+def cmd_add_orcamento(args):
+    s = build_service()
+    o = s.add_orcamento(
+        categoria=args.categoria,
+        limite=args.limite,
+        periodo=args.periodo,
+    )
+    print(f"Orçamento criado: {o.categoria} - {o.limite}€ ({o.periodo})")
+
+def cmd_list_orcamentos(args):
+    s = build_service()
+    for o in s.listar_orcamento(args.periodo):
+        print(f"#{o.id}: {o.categoria} - {o.limite}€ ({o.periodo})")
+
+
 def main(argv=None):
-    parser = argparse.ArgumentParser(prog="gestor", description= "Gestor de Despesas e Orçamentos (Entrega 1)")
+    parser = argparse.ArgumentParser(prog="gestor", description= "Gestor de Despesas e Orçamentos (Entrega 2)")
+    
     #funcao para criar movimento
     sub = parser.add_subparsers(required=True)
     p_add= sub.add_parser("add-mov", help="Adicionar novo movimento")
@@ -43,11 +77,29 @@ def main(argv=None):
     p_add.add_argument("--metodo", choices=["dinheiro", "cartão", "transferência"], default="dinheiro", help="Método de pagamento")
     p_add.set_defaults(func=cmd_add_movimento)
 
-    #funcao para listar tarefa
+    #funcao para listar movimento
     p_list = sub.add_parser("list-mov", help="Listar Movimentos")
+    p_list.add_argument("--categoria", help="Filtrar por categoria")
+    p_list.add_argument("--tipo", choices=["despesa", "receita"], help="Filtrar por tipo")
+    p_list.add_argument("--data", help="Filtrar por data (YYYY-MM-DD)")
+    p_list.add_argument("--descricao", help="Filtrar por descrição")
     p_list.set_defaults(func=cmd_listar)
+
+    #funcao para criar orcamento
+    p_add_orc = sub.add_parser("add-orc", help="Adicionar orçamento")
+    p_add_orc.add_argument("--categoria", required=True)
+    p_add_orc.add_argument("--limite", type=float, required=True)
+    p_add_orc.add_argument("--periodo", choices=["mensal", "anual", "semanal"], default="mensal")
+    p_add_orc.set_defaults(func=cmd_add_orcamento)
+
+    #funcao para listar orcamentos
+    p_list_orc = sub.add_parser("list-orc", help="Listar orçamentos")
+    p_list_orc.add_argument("--periodo", choices=["mensal", "anual", "semanal"])
+    p_list_orc.set_defaults(func=cmd_list_orcamentos)
+
     args = parser.parse_args(argv)
     args.func(args)
+
 
 if __name__== "__main__":
     main()

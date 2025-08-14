@@ -34,5 +34,14 @@
     "tipo": "despesa",
     "descricao": "Viagem de comboio",
     "método de pagamento": "cartão"
+  },
+  {
+    "id": 5,
+    "data": "2025-08-11T00:00:00",
+    "valor": 0.0,
+    "categoria": "Alimentação",
+    "tipo": "despesa",
+    "descricao": "Almoço no restaurante",
+    "método de pagamento": "dinheiro"
   }
 ]

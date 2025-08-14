@@ -7,6 +7,7 @@ from enum import Enum
 from datetime import datetime
 
 METODOS_VALIDOS = ["dinheiro", "cartão", "transferência"]
+PERIODO = ["semanal", "mensal", "anual"]
 
 
 class TipoMovimento(Enum):
@@ -61,3 +62,39 @@ class Movimento:
             descricao= d.get("descricao", ""),
             metodo_de_pagamento=d.get("método de pagamento", "dinheiro")
         )
+
+class Orcamento:
+
+    def __init__(self, id_, categoria, limite, periodo="mensal"):
+        self.id = id_
+        self.categoria = categoria
+        self.limite = float(limite)
+        self.periodo = periodo if periodo in PERIODO else "mensal"
+
+    def validar(self):
+        #garantir que os dados básicos estão corretos e dentro dos parametros pretendidos
+        if not self.categoria.strip():
+            raise ValueError("A categoria é obrigatório")
+        if self.limite < 0:
+            raise ValueError("O limite do orçamento não pode ser negativo")
+        if self.periodo not in PERIODO:
+            raise ValueError(f"Período inválido: {self.periodo}")
+    
+    def to_dict(self):
+        #converter o objeto orcamento em dicionário para guardar em JSON
+        return{
+            "id":self.id,
+            "categoria":self.categoria,
+            "limite" : self.limite,
+            "periodo": self.periodo,
+        }
+    
+    def from_dict(d):
+        #criar o objeto orcamento a partir do dicionario (Quando carregamos o ficheiro JSON)
+        return Orcamento(
+           id_= int(d["id"]),
+            categoria = d.get("categoria", ""),
+            limite=d.get("limite", 0.0),
+            periodo= d.get("periodo", "mensal")
+    )
+    

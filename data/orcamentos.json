@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "categoria": "Alimentação",
+    "limite": 200.0,
+    "periodo": "mensal"
+  },
+  {
+    "id": 2,
+    "categoria": "Trasnporte",
+    "limite": 350.0,
+    "periodo": "mensal"
+  },
+  {
+    "id": 3,
+    "categoria": "Habitação",
+    "limite": 350.0,
+    "periodo": "anual"
+  }
+]
