@@ -70,5 +70,50 @@
     "tipo": "receita",
     "descricao": "Prémio diário",
     "método de pagamento": "cartão"
+  },
+  {
+    "id": 9,
+    "data": "2025-08-14T00:00:00",
+    "valor": 100.5,
+    "categoria": "Alimentação",
+    "tipo": "despesa",
+    "descricao": "Compras supermercado",
+    "método de pagamento": "cartão"
+  },
+  {
+    "id": 10,
+    "data": "2025-08-14T00:00:00",
+    "valor": 100.5,
+    "categoria": "Alimentação",
+    "tipo": "despesa",
+    "descricao": "Compras supermercado",
+    "método de pagamento": "cartão"
+  },
+  {
+    "id": 11,
+    "data": "2025-08-14T00:00:00",
+    "valor": 100.5,
+    "categoria": "Alimentação",
+    "tipo": "despesa",
+    "descricao": "Compras supermercado",
+    "método de pagamento": "cartão"
+  },
+  {
+    "id": 12,
+    "data": "2025-08-14T00:00:00",
+    "valor": 100.5,
+    "categoria": "Alimentação",
+    "tipo": "despesa",
+    "descricao": "Compras supermercado",
+    "método de pagamento": "cartão"
+  },
+  {
+    "id": 13,
+    "data": "2025-08-14T00:00:00",
+    "valor": 100.5,
+    "categoria": "Alimentação",
+    "tipo": "despesa",
+    "descricao": "Compras supermercado",
+    "método de pagamento": "cartão"
   }
 ]

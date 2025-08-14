@@ -22,5 +22,47 @@
     "categoria": "Alimentação",
     "limite": 200.0,
     "periodo": "mensal"
+  },
+  {
+    "id": 5,
+    "categoria": "Lazer",
+    "limite": 200.0,
+    "periodo": "mensal"
+  },
+  {
+    "id": 6,
+    "categoria": "Lazer",
+    "limite": 200.0,
+    "periodo": "mensal"
+  },
+  {
+    "id": 7,
+    "categoria": "Lazer",
+    "limite": 200.0,
+    "periodo": "mensal"
+  },
+  {
+    "id": 8,
+    "categoria": "Lazer",
+    "limite": 200.0,
+    "periodo": "mensal"
+  },
+  {
+    "id": 9,
+    "categoria": "Lazer",
+    "limite": 200.0,
+    "periodo": "mensal"
+  },
+  {
+    "id": 10,
+    "categoria": "Lazer",
+    "limite": 200.0,
+    "periodo": "mensal"
+  },
+  {
+    "id": 11,
+    "categoria": "Lazer",
+    "limite": 200.0,
+    "periodo": "mensal"
   }
 ]

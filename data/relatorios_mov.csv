@@ -2,3 +2,8 @@ id,data,valor,categoria,tipo,descricao,metodo_de_pagamento
 6,2025-08-13T16:07:59.444197,5.0,Alimentação,despesa,Lanche,dinheiro
 7,2025-08-13T16:10:30.613634,2.1,Trasnporte,despesa,Autocarro,dinheiro
 8,2025-08-13T16:11:20.771869,25.0,Salário,receita,Prémio diário,cartão
+9,2025-08-14T10:17:04.821915,100.5,Alimentação,despesa,Compras supermercado,cartão
+10,2025-08-14T10:18:43.286452,100.5,Alimentação,despesa,Compras supermercado,cartão
+11,2025-08-14T10:23:08.195071,100.5,Alimentação,despesa,Compras supermercado,cartão
+12,2025-08-14T10:26:48.685409,100.5,Alimentação,despesa,Compras supermercado,cartão
+13,2025-08-14T11:03:19.152185,100.5,Alimentação,despesa,Compras supermercado,cartão

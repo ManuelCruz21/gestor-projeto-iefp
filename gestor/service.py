@@ -21,7 +21,7 @@ class GestorService:
         if tipo == "despesa" and self.verificar_overspend(categoria,valor):
             raise GestorError("O valor ultrapassa o orçamento!")
         
-        self.storage.anexar_relatorio({
+        self.storage.anexar_relatorio_movimento({
             "id": novo_id,
             "data": datetime.now().isoformat(),
             "valor": valor,

@@ -1,8 +1,10 @@
 Instruções para instalação e utilização da nossa aplicação.
 
-Enunciado
+# Gestor de Despesas e Orçamentos – CLI
 
-Construir uma aplicação em linha de comandos para registar despesas e receitas, definir orçamentos por categoria e gerar relatórios mensais/semanal, sinalizando desvios (overspend).
+Aplicação em linha de comandos para registar despesas e receitas, definir orçamentos por categoria e gerar relatórios mensais/semanal, sinalizando desvios (overspend).
+
+---
 
 Funcionalidades-chave
 
@@ -47,8 +49,27 @@ Tabela de comandos (proposta)
 | rem-mov   | --id                                                                      | Remove um movimento             |
 
 
+## Instalação
 
-Entrega 1 — Bases do projeto (11/08/2025)
+1. Clonar o repositório:
+
+```bash
+git clone https://github.com/ManuelCruz21/gestor-projeto-iefp
+cd gestor-projeto-iefp
+```
+2. Instalar pytest:
+```bash
+pip install pytest
+```
+
+3. Verificar se está instalado:
+```bash
+pytest --version
+```
+
+Após estas recomendações, temos então as várias entregas e os requisitos pedidos:
+
+*Entrega 1 — Bases do projeto (11/08/2025)*
 
 - Criar estrutura de diretórios e ficheiros base.
 
@@ -81,8 +102,9 @@ python -m gestor.cli add-mov --data "2025-08-11T15:56:00" --tipo "despesa" --cat
 # Exemplo para listar movimentos
 python -m gestor.cli list-mov
 
+# Pasta data com movimentos.json
 
-Entrega 2 — Orçamentos e filtros (12/08/2025)
+*Entrega 2 — Orçamentos e filtros (12/08/2025)*
 
 - Criar classe Orcamento e guardar em orcamentos.json.
 
@@ -117,8 +139,9 @@ python -m gestor.cli list-mov --descricao "Viagem de comboio"
 # Exemplo para listar orçamentos
 python -m gestor.cli list-orc
 
+# Pasta data com movimentos.json e orçamentos.json
 
-Entrega 3 — Relatórios (13/08/2025)
+*Entrega 3 — Relatórios (13/08/2025)*
 - Implementar reports.py com:
 
   - totais-por-cat
@@ -143,10 +166,83 @@ python -m gestor.cli relatorio --categoria cashflow-semanal
 
 # Exemplo de Relatório top-categorias
 python -m gestor.cli relatorio --categoria top-categorias
-Salário - 25.00€
-Alimentação - 5.00€
-Trasnporte - 2.10€
 
 # Exemplo de Relatório de alertas
 python -m gestor.cli relatorio --categoria alertas
-Alimentação | Limite: 200.00€ | Gasto: 55.00€ | Excesso: 0.00€
+
+# Pasta data agora com os json anteriores e os relatórios em csv
+
+*Entrega 4 — Qualidade final*
+- Adicionar tratamento de exceções e logging.
+
+- Completar documentação (README completo com instruções e limitações).
+
+- Criar mínimo de 10 testes no total, cobertura ≥ 75% nos módulos de negócio.
+
+- Marcar versão final com tag v1.0.
+
+- Critério de aceitação: todos os testes a passar e execução via python -m finance.
+
+- Entrega: código final + documentação completa.
+
+No topo de cada ficheiro de testes no diretório tests tem escrito o comando ao qual se deve correr os testes
+
+# Exemplo:
+```bash
+pytest -v tests/test_cli.py
+```
+4. Coverage:
+Para correr a coverage temos de instalar primeiro 
+
+```bash
+pip install coverage
+```
+
+5. Verificar se está instalado 
+```bash
+coverage --version
+```
+
+6. Correr no terminal o seguinte comando para verificar a cobertura
+```bash
+pytest --cov=gestor --cov-report=term-missing -v
+```
+
+Fica então a seguinte estrutura de pastas:
+
+gestor-projeto-iefp/
+├─ gestor/
+│ ├─ init.py
+│ ├─ cli.py # Interface de linha de comandos
+│ ├─ models.py # Classe Tarefa e validações
+│ ├─ storage.py # Guardar/carregar dados em JSON e CSV
+│ └─ service.py # Regras de negócio
+├─ data/ # Ficheiros gerados pela aplicação (tarefas.json, sessoes.csv)
+│ ├─ movimentos.json
+│ ├─ orcamentos.json
+│ ├─ relatorios_mov.csv
+│ ├─ relatorios_orc.csv
+├─ tests/ # Testes com pytest
+│ ├─ init.py
+│ ├─ test_cli.py
+│ ├─ test_mov.py
+│ ├─ test_orc.py
+│ ├─ test_service.py
+│ ├─ test_storage.py
+└─ README.md
+
+gestor-despesas/
+├─ gestor/
+│  ├─ __init__.py
+│  ├─ cli.py
+│  ├─ models.py
+│  ├─ service.py
+│  ├─ storage.py
+│  ├─ reports.py
+├─ tests/
+│  ├─ test_cli.py
+│  ├─ test_service.py
+│  ├─ test_storage.py
+├─ movimentos.json
+├─ orcamentos.json
+├─ README.md
