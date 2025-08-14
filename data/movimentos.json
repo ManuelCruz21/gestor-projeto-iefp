@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "data": "2025-08-11",
+    "valor": 50.0,
+    "categoria": "Alimentação",
+    "tipo": "despesa",
+    "descricao": "Almoço no restaurante",
+    "método de pagamento": "dinheiro"
+  },
+  {
+    "id": 2,
+    "data": "2025-08-11T15:54:00",
+    "valor": 50.0,
+    "categoria": "Alimentaçao",
+    "tipo": "despesa",
+    "descricao": "Almoço",
+    "método de pagamento": "dinheiro"
+  },
+  {
+    "id": 3,
+    "data": "2025-08-11T15:55:00",
+    "valor": 1050.0,
+    "categoria": "Salario",
+    "tipo": "receita",
+    "descricao": "Salário - Agosto",
+    "método de pagamento": "dinheiro"
+  },
+  {
+    "id": 4,
+    "data": "2025-08-11T15:56:00",
+    "valor": 35.0,
+    "categoria": "Trasnporte",
+    "tipo": "despesa",
+    "descricao": "Viagem de comboio",
+    "método de pagamento": "cartão"
+  }
+]
